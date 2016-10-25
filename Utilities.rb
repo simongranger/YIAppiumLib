@@ -206,4 +206,3 @@ def swipeDown()
     elm=find_elements(:name,'Placeholder-Title')
     swipe(:start_x=>elm[0].location.x, :start_y=>elm[0].location.y, :end_x=>0, :end_y=>elm[0].location.y-100)
 end
-swipe(:start_x=>200, :start_y=>700, :end_x=>0, :end_y=>-200)
