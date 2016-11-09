@@ -187,9 +187,22 @@ def swipe(opts)
   start_y  = opts.fetch :start_y, 0
   end_x    = opts.fetch :end_x, 0
   end_y    = opts.fetch :end_y, 0
-  duration = opts.fetch :duration, 2
+  duration = opts.fetch :duration, 200 #in ms
 
   
   action = Appium::TouchAction.new.press(x: start_x, y: start_y).move_to(x: end_x, y: end_y).release 
   action.perform
+end
+
+#Returns a list of Placeholder-Titles; usually where all the movies names are found in
+def listNames()
+    elm=find_elements(:name,'Placeholder-Title')
+    elm.each_with_index { |e, index| 
+        puts "#{index}: #{e.text} => x:#{e.location.x} y:#{e.location.y}"
+    }
+end
+
+def swipeDown()
+    elm=find_elements(:name,'Placeholder-Title')
+    swipe(:start_x=>elm[0].location.x, :start_y=>elm[0].location.y, :end_x=>0, :end_y=>elm[0].location.y-100)
 end
